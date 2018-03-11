@@ -3,7 +3,9 @@ package com.pageobjectpattern.pages;
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+import java.io.IOException;
 
 public class BasePage {
 
@@ -15,7 +17,7 @@ public class BasePage {
     @Before
     public void setUp(){
         baseUrl = "https://www.expedia.com";
-        driver = new ChromeDriver();
+        driver = new FirefoxDriver();
         homePage = new HomePage(driver);
         resultsPage = new ResultsPage(driver);
         driver.manage().deleteAllCookies();
@@ -24,7 +26,7 @@ public class BasePage {
     }
 
     @After
-    public void tearDown(){
+    public void tearDown() throws IOException {
         driver.quit();
     }
 }

@@ -1,12 +1,16 @@
 package com.pageobjectpattern.utilities;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Utilities {
@@ -103,5 +107,14 @@ public class Utilities {
             System.out.println("Element not visible, " + e.getMessage());
         }
         return element;
+    }
+
+    public void screenshot() throws IOException {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        String fileName = dateFormat.format(date) + ".png";
+        String directory = System.getProperty("user.dir") + "/screenshots/";
+        File sourceFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(sourceFile, new File(directory + fileName));
     }
 }

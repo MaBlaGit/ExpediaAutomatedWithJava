@@ -4,6 +4,8 @@ import com.pageobjectpattern.pages.BasePage;
 import com.pageobjectpattern.utilities.Utilities;
 import static org.junit.Assert.*;
 import org.junit.Test;
+import java.io.IOException;
+
 
 public class TestSuiteHomePage extends BasePage {
 
@@ -27,7 +29,8 @@ public class TestSuiteHomePage extends BasePage {
         assertNotNull(utilities.waitForElement(resultsPage.headerLogo(), 20));
     }
 
-    public void tearDown(){
+    public void tearDown() throws IOException {
+        utilities.screenshot();
         super.tearDown();
     }
 }
