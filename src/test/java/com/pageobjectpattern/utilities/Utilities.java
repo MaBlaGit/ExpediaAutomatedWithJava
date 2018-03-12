@@ -3,6 +3,7 @@ package com.pageobjectpattern.utilities;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
@@ -116,5 +117,10 @@ public class Utilities {
         String directory = System.getProperty("user.dir") + "/screenshots/";
         File sourceFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(sourceFile, new File(directory + fileName));
+    }
+
+    public void selectFromTheList(WebElement element, String selectByVisibleText){
+        Select selectOption= new Select(element);
+        selectOption.selectByVisibleText(selectByVisibleText);
     }
 }
